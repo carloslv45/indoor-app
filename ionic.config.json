@@ -1,0 +1,7 @@
+{
+  "name": "Indoor-App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
