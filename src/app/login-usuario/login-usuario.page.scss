@@ -1,0 +1,50 @@
+ion-content {
+    --ion-background-color: #ffffff;
+}
+
+p {
+    color: #000000;
+    text-align: center;
+    font-size: 35px;
+}
+
+ion-item {
+    --ion-background-color: #ffffff;
+}
+
+ion-list {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    gap: 1em;
+}
+
+ion-button {
+    text-align: center;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 20px;
+}
+
+.p-registro {
+    font-size: 19px;
+    text-decoration: underline;
+}
+
+.p-volver {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+.my-custom-class {
+    background-color: red;
+}
+
+.underlines {
+    display: flex;
+    justify-content: center;
+    gap: 4em;
+}

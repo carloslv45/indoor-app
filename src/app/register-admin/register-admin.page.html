@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <img class="logo-indor" src="../../assets/img/logo-indor.jpeg" alt="Logo Indoor">
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="formulario" (ngSubmit)="registerAdmin(formulario.value)">
+        <p class="p-ingreso-usuario">Registro de Admin:</p>
+        <ion-list>
+            <ion-item>
+                <ion-label position="stacked">Nombre</ion-label>
+                <ion-input type="text" formControlName="nombre"></ion-input>
+            </ion-item>
+            <div *ngIf="validarNombre" class="alert alert-danger" role="alert">
+                Nombre es requerido
+            </div>
+            <ion-item>
+                <ion-label position="stacked">Apellido</ion-label>
+                <ion-input type="text" formControlName="apellido"></ion-input>
+            </ion-item>
+            <div *ngIf="validarApellido" class="alert alert-danger" role="alert">
+                Apellido es requerido
+            </div>
+            <ion-item>
+                <ion-label position="stacked">Codigo Indoor</ion-label>
+                <ion-input type="text" formControlName="codigo"></ion-input>
+            </ion-item>
+            <div *ngIf="validarCodigo" class="alert alert-danger" role="alert">
+                Codigo es requerido
+            </div>
+            <ion-item>
+                <ion-label position="stacked">Correo</ion-label>
+                <ion-input type="email" formControlName="email"></ion-input>
+            </ion-item>
+            <div *ngIf="validarEmail" class="alert alert-danger" role="alert">
+                Correo es requerido
+            </div>
+            <ion-item>
+                <ion-label position="stacked">Contraseña</ion-label>
+                <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <div *ngIf="validarPassword" class="alert alert-danger" role="alert">
+                Password es requerida y debe tener mas de 6 caracteres
+            </div>
+            <br>
+            <ion-button [disabled]="formulario.invalid" type="submit" color="primary" expand="block" fill="clear" shape="round">
+                Registrar
+            </ion-button>
+        </ion-list>
+    </form>
+    <p class="p-volver" (click)="volver()">Volver</p>
+</ion-content>

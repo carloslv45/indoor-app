@@ -1,0 +1,28 @@
+ion-content {
+    --ion-background-color: #000;
+}
+
+ion-header {
+    --ion-background-color: #000;
+}
+
+ion-item {
+    display: flex;
+    align-items: center;
+    margin-top: 220px;
+}
+
+:host {
+    ion-button {
+        border: 1px solid #fff;
+        border-radius: 8px;
+        color: white;
+        width: 80%;
+        margin: 0 auto;
+    }
+    ion-button:hover {
+        border: 1px solid #0500FD;
+        border-radius: 8px;
+        color: #000000;
+    }
+}
