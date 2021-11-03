@@ -62,13 +62,7 @@ export class LoginUsuarioPage implements OnInit {
   }
 
   public loginUsers(email: string, password: string): void {
-    this.loginUserSer.signInWithEmailAndPassword(email, password).then(result => {
-      console.log(result);
-      this.presentAlertOk(result.operationType);
-    }).catch(err => {
-      console.log(err);
-      this.presentAlertErr(err.message);
-    });
+    this.loginUserSer.signInWithEmailAndPassword(email, password);
   }
 
   async presentAlertOk(messages) {

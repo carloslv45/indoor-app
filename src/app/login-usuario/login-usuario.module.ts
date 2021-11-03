@@ -8,6 +8,7 @@ import { LoginUsuarioPageRoutingModule } from './login-usuario-routing.module';
 
 import { LoginUsuarioPage } from './login-usuario.page';
 
+
 @NgModule({
   imports: [
     CommonModule,

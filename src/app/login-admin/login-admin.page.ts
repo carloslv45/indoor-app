@@ -34,7 +34,7 @@ export class LoginAdminPage implements OnInit {
       const email = form.email;
       console.log(email.split('.')[0]);
       if(email.split('.')[0] === 'admin'){
-        this.loginAdmins(form.email, form.password);
+        this.loginAdmins(form.email, form.password, form.codigo);
       }else {
         this.presentAlertErr('El correo debe tener "admin." para ingresar como administrador');
       }
@@ -64,14 +64,8 @@ export class LoginAdminPage implements OnInit {
     return this.formulario.get('codigo').invalid && this.formulario.get('codigo').touched;
   }
 
-  public loginAdmins(email: string, password: string): void {
-    this.loginUserSer.signInWithEmailAndPassword(email, password).then(result => {
-      console.log(result);
-      this.presentAlertOk(result.operationType);
-    }).catch(err => {
-      console.log(err);
-      this.presentAlertErr(err.message);
-    });
+  public loginAdmins(email: string, password: string, codigo: string): void {
+    this.loginUserSer.signInWithEmailAndPassword(email, password, codigo);
   }
 
   async presentAlertOk(messages) {

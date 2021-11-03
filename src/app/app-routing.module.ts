@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'register-admin',
     loadChildren: () => import('./register-admin/register-admin.module').then( m => m.RegisterAdminPageModule)
+  },
+  {
+    path: 'inicio/:user',
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   }
 ];
 @NgModule({
