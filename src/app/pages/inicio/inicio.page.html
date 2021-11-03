@@ -6,5 +6,7 @@
 
 <ion-content>
     Bienvenido {{usuario}}
-    <app-crear-pedido></app-crear-pedido>
+    <app-crear-pedido *ngIf="isAdmin"></app-crear-pedido>
+    <app-modificar-pedido *ngIf="!isAdmin"></app-modificar-pedido>
+    <app-ver-pedido *ngIf="!isAdmin"></app-ver-pedido>
 </ion-content>
