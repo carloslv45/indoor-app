@@ -67,6 +67,13 @@
     --ion-color-light-contrast-rgb: 0, 0, 0;
     --ion-color-light-shade: #d7d8da;
     --ion-color-light-tint: #f5f6f9;
+    /** border-black **/
+    --ion-color-border-black: #000000;
+    --ion-color-border-black-rgb: 244, 245, 248;
+    --ion-color-border-black-contrast: #000000;
+    --ion-color-border-black-contrast-rgb: 0, 0, 0;
+    --ion-color-border-black-shade: #d7d8da;
+    --ion-color-border-black-tint: #f5f6f9;
 }
 
 @media (prefers-color-scheme: dark) {

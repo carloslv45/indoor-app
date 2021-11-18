@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { RouterContrains } from 'src/app/enum/router-contrains';
 
 @Component({
   selector: 'app-inicio',
@@ -9,14 +10,14 @@ import { ActivatedRoute } from '@angular/router';
 export class InicioPage implements OnInit {
   public usuario: string;
   public isAdmin: boolean;
-  constructor(private activeRouter: ActivatedRoute) { }
+  constructor(private activeRouter: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.activeRouter.params.subscribe((data) => {
       console.log(data);
-      this.usuario = data.user;
+      this.usuario = data.user.split('@')[0];
       const separar = this.usuario.split('.');
-      console.log(separar);
       if(separar[0] === 'admin'){
         this.isAdmin = true;
       }else{
@@ -24,5 +25,11 @@ export class InicioPage implements OnInit {
       }
     });
   }
+
+
+  public navigation(ruta: string){
+    this.router.navigateByUrl(ruta);
+  }
+
 
 }

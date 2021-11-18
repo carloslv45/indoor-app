@@ -1,12 +1,13 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>inicio</ion-title>
+        <img class="logo-indor" src="../../assets/img/logo-indor.jpeg" alt="Logo Indoor">
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    Bienvenido {{usuario}}
-    <app-crear-pedido *ngIf="isAdmin"></app-crear-pedido>
-    <app-modificar-pedido *ngIf="!isAdmin"></app-modificar-pedido>
-    <app-ver-pedido *ngIf="!isAdmin"></app-ver-pedido>
+    <h2>Bienvenido {{usuario}}</h2>
+    <ion-button (click)="navigation('crear-cliente')" color="border-black" expand="block" fill="outline">
+        Crear Cliente </ion-button>
+    <ion-button color="primary" expand="block" fill="outline">
+        Crear Pedido </ion-button>
 </ion-content>
