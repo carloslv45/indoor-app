@@ -87,7 +87,8 @@ public validarUid(uid: string, user: any): boolean {
   if(uid !== ''){
     console.log(true);
     console.log('user: ' + user);
-    this.router.navigate(['/inicio', user]);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.router.navigate(['/inicio']);
     return true;
   }else{
     if(this.codigo === undefined){

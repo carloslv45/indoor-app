@@ -9,10 +9,6 @@ const routes: Routes = [
   {
     path: '',
     component: InicioPage
-  },
-  {
-    path: 'crear-cliente',
-    component: CrearClienteComponent
   }
 ];
 

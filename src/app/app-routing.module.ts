@@ -23,9 +23,31 @@ const routes: Routes = [
     loadChildren: () => import('./register-admin/register-admin.module').then( m => m.RegisterAdminPageModule)
   },
   {
-    path: 'inicio/:user',
+    path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'crear-cliente',
+    loadChildren: () => import('./pages/crear-cliente/crear-cliente.module').then( m => m.CrearClientePageModule)
+  },
+  {
+    path: 'crear-pedido',
+    loadChildren: () => import('./pages/crear-pedido/crear-pedido.module').then( m => m.CrearPedidoPageModule)
+  },
+  {
+    path: 'consultar-pedido',
+    loadChildren: () => import('./pages/consultar-pedido/consultar-pedido.module').then( m => m.ConsultarPedidoPageModule)
+  },
+  {
+    path: 'crear-prenda',
+    loadChildren: () => import('./pages/consultar-prenda/consultar-prenda.module').then( m => m.ConsultarPrendaPageModule)
+  },
+  {
+    path: 'crear-referencia',
+    loadChildren: () => import('./pages/consultar-referencia/consultar-referencia.module').then( m => m.ConsultarReferenciaPageModule)
   }
+
+
 ];
 @NgModule({
   imports: [

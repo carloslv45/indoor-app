@@ -12,7 +12,5 @@ export class CrearClienteComponent implements OnInit {
 
   ngOnInit() {}
 
-  public navegacion(): void {
-    this.navigation.emit(RouterContrains.CREAR_CLIENTE);
-  }
+
 }
