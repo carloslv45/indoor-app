@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { NavComponent } from '@ionic/core';
+import { LocalStorageServiceService } from 'src/app/core/services/localService/local-storage-service.service';
+import { UserAuthService } from 'src/app/core/services/me/user-auth.service';
 import { RouterContrains } from 'src/app/enum/router-contrains';
 
 @Component({
@@ -14,18 +16,13 @@ export class InicioPage implements OnInit {
   public isAdmin: boolean;
   constructor(private activeRouter: ActivatedRoute,
               private router: Router,
+              private localService: LocalStorageServiceService,
+              private userService: UserAuthService,
               private navCtr: NavController) { }
 
   ngOnInit() {
-    this.usuario = JSON.parse(localStorage.getItem('user'));
+    this.localServiceData();
 
-      this.usuario = this.usuario.split('@')[0];
-      const separar = this.usuario.split('.');
-      if(separar[0] === 'admin'){
-        this.isAdmin = true;
-      }else{
-        this.isAdmin = false;
-      }
 
   }
 
@@ -47,7 +44,24 @@ export class InicioPage implements OnInit {
   }
   public cerrarSession(){
     this.navCtr.navigateForward(RouterContrains.LOGIN_ADMIN);
-    localStorage.removeItem('user');
+    this.localService.removeUserSetLocalStorage();
+    this.localService.removejwtSetLocalStorage();
+  }
+
+  public localServiceData(): void{
+    const jwt = this.localService.getjwtSetLocalStorage();
+    const userId = this.localService.getUserSetLocalStorage();
+    this.getUserAuth(jwt, userId);
+  }
+
+  public getUserAuth(jwt: string ,  userId: string): void{
+    // eslint-disable-next-line radix
+    const user = parseInt(userId);
+    this.userService.me(jwt, user).subscribe((resp) => {
+      if(resp){
+        this.usuario = `${resp.username} ${resp.apellido}`;
+      }
+    });
   }
 
 

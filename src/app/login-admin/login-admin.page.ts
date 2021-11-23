@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { IngresoService } from '../core/services/auth/ingreso.service';
 import { CreateUserService } from '../core/services/create-user.service';
+import { LocalStorageServiceService } from '../core/services/localService/local-storage-service.service';
+import { MensajesService } from '../core/services/mensajes/mensajes.service';
+import { RouterContrains } from '../enum/router-contrains';
+import { DataIngreso } from '../interfaces/ingreso/data-ingreso';
 
 @Component({
   selector: 'app-login-admin',
@@ -14,6 +19,9 @@ export class LoginAdminPage implements OnInit {
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
               public alertController: AlertController,
+              private ingresoService: IngresoService,
+              private mensajes: MensajesService,
+              private localService: LocalStorageServiceService,
               private loginUserSer: CreateUserService) { }
   ngOnInit() {
     this.dataBuilder();
@@ -65,7 +73,22 @@ export class LoginAdminPage implements OnInit {
   }
 
   public loginAdmins(email: string, password: string, codigo: string): void {
-    this.loginUserSer.signInWithEmailAndPassword(email, password, codigo);
+    const data: DataIngreso = {
+      identifier: email,
+      password
+    };
+    this.ingresoService.ingreso(data).subscribe((resp) => {
+      if(resp.jwt){
+        this.localService.setjwtSetLocalStorage(resp.jwt);
+        this.localService.setUserSetLocalStorage(JSON.stringify(resp.user.id));
+        this.navCtrl.navigateForward(RouterContrains.INICIO);
+        this.mensajes.presentAlertErr(`Bienvenido ${resp.user.username} ${resp.user.apellido}`);
+      }else{
+        this.mensajes.presentAlertErr('Error de datos verifique por favor');
+      }
+    }, (err) => {
+      this.mensajes.presentAlertErr('Error de datos de servidor');
+    });
   }
 
   async presentAlertOk(messages) {

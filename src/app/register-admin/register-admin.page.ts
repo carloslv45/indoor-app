@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { RegistroService } from '../core/services/auth/registro.service';
 import { CreateUserService } from '../core/services/create-user.service';
+import { LocalStorageServiceService } from '../core/services/localService/local-storage-service.service';
+import { MensajesService } from '../core/services/mensajes/mensajes.service';
+import { RouterContrains } from '../enum/router-contrains';
+import { CrearUsuario } from '../interfaces/crear-usuario/crear-usuario.interface';
 
 @Component({
   selector: 'app-register-admin',
@@ -14,6 +19,9 @@ export class RegisterAdminPage implements OnInit {
   constructor(private fb: FormBuilder,
               private navCtrl: NavController,
               private createUser: CreateUserService,
+              private mensajes: MensajesService,
+              private registerUser: RegistroService,
+              private localService: LocalStorageServiceService,
               public alertController: AlertController) { }
 
   ngOnInit() {
@@ -37,15 +45,22 @@ export class RegisterAdminPage implements OnInit {
   }
 
   public createAdmin(email: string, password: string, nombre: string, apellido: string, codigo: string): void{
-    this.createUser.createUserEmailPw(email, password).then(result => {
-      console.log(result);
-      if(result.additionalUserInfo.isNewUser){
-        this.presentAlertOk(nombre, apellido);
-        this.guardarCodigoLocalStorage(codigo);
+    // this.createUser.createUserEmailPw(email, password);
+    const data: CrearUsuario = {
+      username: nombre,
+      password,
+      email,
+      codigo,
+      apellido,
+      admin: true
+    };
+    this.registerUser.registro(data).subscribe((resp) => {
+      if(resp.jwt){
+        this.mensajes.presentAlertOk(`Administrador ${resp.user.username} ${resp.user.apellido} creado correctamente`);
+        this.navCtrl.navigateForward(RouterContrains.LOGIN_ADMIN);
+      }else {
+        this.mensajes.presentAlertOk(`Administrador ${resp.user.username} ${resp.user.apellido} no fue creado`);
       }
-    }).catch(err => {
-      console.log(err);
-      this.presentAlertErr(err.message);
     });
   }
   public volver(): void{

@@ -35,15 +35,15 @@ export class RegisterUsuarioPage implements OnInit {
   }
 
   public createUsers(email: string, password: string, nombre: string, apellido: string): void{
-    this.createUser.createUserEmailPw(email, password).then(result => {
-      console.log(result);
-      if(result.additionalUserInfo.isNewUser){
-        this.presentAlertOk(nombre, apellido);
-      }
-    }).catch(err => {
-      console.log(err);
-      this.presentAlertErr(err.message);
-    });
+    // this.createUser.createUserEmailPw(email, password).then(result => {
+    //   console.log(result);
+    //   if(result.additionalUserInfo.isNewUser){
+    //     this.presentAlertOk(nombre, apellido);
+    //   }
+    // }).catch(err => {
+    //   console.log(err);
+    //   this.presentAlertErr(err.message);
+    // });
   }
   public volver(): void{
     this.navCtrl.navigateForward('/login-usuario');

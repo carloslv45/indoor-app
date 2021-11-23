@@ -6,37 +6,39 @@
 
 <ion-content>
 
+  <form [formGroup]="formulario" (ngSubmit)="crearUsuario(formulario.value)">
   <ion-list>
     <ion-title class="ion-text-center">Crear Cliente</ion-title>
     <ion-item>
       <ion-label stacked>Cedula/Nit</ion-label>
-      <ion-input type="text" placeholder="Awesome Input"></ion-input>
+      <ion-input type="text" placeholder="" formControlName="cedula"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Nombre/Razón social</ion-label>
-      <ion-input type="text" placeholder="Awesome Input"></ion-input>
+      <ion-input type="text" placeholder="" formControlName="nombre"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Correo</ion-label>
-      <ion-input type="email" placeholder="Awesome Input"></ion-input>
+      <ion-input type="email" placeholder="" formControlName="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Celular</ion-label>
-      <ion-input type="number" placeholder="Awesome Input"></ion-input>
+      <ion-input type="number" placeholder="" formControlName="celular"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Dirección</ion-label>
-      <ion-input type="text" placeholder="Awesome Input"></ion-input>
+      <ion-input type="text" placeholder="" formControlName="direccion"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Ciudad</ion-label>
-      <ion-input type="text" placeholder="Awesome Input"></ion-input>
+      <ion-input type="text" placeholder="" formControlName="ciudad"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Contraseña</ion-label>
-      <ion-input type="password" placeholder="Awesome Input"></ion-input>
+      <ion-input type="password" placeholder="" formControlName="password"></ion-input>
     </ion-item>
-    <ion-button expand="full" >Crear Cliente</ion-button>
-    <ion-button expand="full" fill="outline" (click)="volver()">Volver</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="formulario.invalid">Crear Cliente</ion-button>
+    <ion-button expand="full" fill="outline" type="button" (click)="volver()">Volver</ion-button>
   </ion-list>
+</form>
 </ion-content>

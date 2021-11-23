@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AngularFirestore, DocumentReference } from '@angular/fire/firestore';
 import { AlertController, NavController } from '@ionic/angular';
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,21 @@ export class CreateUserService {
     private fireAuth: AngularFireAuth ,
     public alertController: AlertController,
     private router: Router,
+    private firestore: AngularFirestore,
     private navCtrl: NavController) { }
 
-  public createUserEmailPw(email: string, password: string): Promise<firebase.auth.UserCredential> {
-   return this.fireAuth.createUserWithEmailAndPassword(email, password);
+  public createUserEmailPw(email: string, password: string) {
+   return this.fireAuth.createUserWithEmailAndPassword(email, password).then((resp) => {
+    if(resp){
+      this.presentAlertOk(email);
+    }
+       this.firestore.collection('users').doc(resp.user.uid).set({
+       ok: true
+     });
+   }).catch(err => {
+    console.log(err);
+    this.presentAlertErr(err.message);
+  });
   }
 
   public signInWithEmailAndPassword(email: string, password: string, codigo?: string){
