@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { CreateUserService } from 'src/app/core/services/create-user.service';
+import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { PrendasService } from 'src/app/core/services/prendas.service';
 import { RouterContrains } from 'src/app/enum/router-contrains';
+import { Prendas } from 'src/app/interfaces/crear-prendas/crear-prendas.interface';
 
 @Component({
   selector: 'app-consultar-prenda',
@@ -18,7 +20,7 @@ export class ConsultarPrendaPage implements OnInit {
     private navCtrl: NavController,
     private  fb: FormBuilder,
     private prendaService: PrendasService,
-    private mensajes: CreateUserService
+    private mensajes: MensajesService
   ) { }
 
   ngOnInit() {
@@ -47,13 +49,16 @@ export class ConsultarPrendaPage implements OnInit {
 
     this.lessons.push(this.newReferencia());
   }
-  public crearPrenda(data): void{
-    console.log(data);
-    this.prendaService.crearPrendas(data).then((resp) => {
-     if (resp){
-      this.mensajes.presentAlertOk('Prenda creada correctamente');
-      this.formulario.reset();
-     }
+  public crearPrenda(data: Prendas): void{
+    this.prendaService.crearPrendas$(data).subscribe((resp) => {
+        if(resp){
+          this.mensajes.presentAlertOk(`Prenda ${resp.nombre_prenda} creada correctamente`);
+          this.formulario.reset();
+        }else{
+          this.mensajes.presentAlertErr(`Error al crear la Prenda ${resp.nombre_prenda}`);
+        }
+      }, (err) => {
+        this.mensajes.presentAlertErr(`Error de servidor ${err}`);
     });
   }
   public volver(): void{

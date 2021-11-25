@@ -8,6 +8,7 @@ export interface User {
     username:   string;
     email:      string;
     provider:   string;
+    admin:   string;
     confirmed:  boolean;
     blocked:    null;
     role:       Role;

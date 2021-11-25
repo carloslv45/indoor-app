@@ -38,16 +38,8 @@ export class LoginAdminPage implements OnInit {
 
   //ingresar con login normal
     public loginAdmin(form): void {
-      console.log(form);
-      const email = form.email;
-      console.log(email.split('.')[0]);
-      if(email.split('.')[0] === 'admin'){
         this.loginAdmins(form.email, form.password, form.codigo);
-      }else {
-        this.presentAlertErr('El correo debe tener "admin." para ingresar como administrador');
       }
-  }
-
   //ingreso de session de google
   public google(): void {
   }
@@ -78,13 +70,14 @@ export class LoginAdminPage implements OnInit {
       password
     };
     this.ingresoService.ingreso(data).subscribe((resp) => {
-      if(resp.jwt){
+      if(resp.user.admin){
+        console.log(resp);
         this.localService.setjwtSetLocalStorage(resp.jwt);
         this.localService.setUserSetLocalStorage(JSON.stringify(resp.user.id));
         this.navCtrl.navigateForward(RouterContrains.INICIO);
         this.mensajes.presentAlertErr(`Bienvenido ${resp.user.username} ${resp.user.apellido}`);
       }else{
-        this.mensajes.presentAlertErr('Error de datos verifique por favor');
+        this.mensajes.presentAlertErr('No eres usuario administrador');
       }
     }, (err) => {
       this.mensajes.presentAlertErr('Error de datos de servidor');

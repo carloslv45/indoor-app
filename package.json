@@ -32,7 +32,8 @@
     "luxon": "^2.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
-    "uuidv4": "^6.2.12",
+    "util": "^0.12.4",
+    "uuidv4": "^6.2.7",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
