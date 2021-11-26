@@ -4,7 +4,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="isAdmin">
     <h2>Bienvenido {{usuario}}</h2>
     <ion-button (click)="navigation()" color="border-black" expand="block" fill="outline">
         Crear Cliente </ion-button>
@@ -16,6 +16,16 @@
         Crear Prenda </ion-button>
     <ion-button (click)="navigation5()" color="primary" expand="block" fill="outline">
         Crear Refencia  </ion-button>
+    <ion-button (click)="cerrarSession()" color="danger" expand="block" fill="outline">
+       Cerrar Session  </ion-button>
+</ion-content>
+
+<ion-content *ngIf="!isAdmin">
+    <h2>Bienvenido {{usuario}}</h2>
+    <ion-button (click)="navigation3()" color="border-black" expand="block" fill="outline">
+        Consultar Pedido </ion-button>
+    <ion-button (click)="navigation2()" color="primary" expand="block" fill="outline">
+        Modificar Pedido </ion-button>
     <ion-button (click)="cerrarSession()" color="danger" expand="block" fill="outline">
        Cerrar Session  </ion-button>
 </ion-content>

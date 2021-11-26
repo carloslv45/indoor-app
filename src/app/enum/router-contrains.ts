@@ -4,6 +4,8 @@ export enum RouterContrains {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     LOGIN_ADMIN = 'login-admin',
     // eslint-disable-next-line @typescript-eslint/naming-convention
+    LOGIN_USER = 'login-usuario',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     CREAR_CLIENTE = '/crear-cliente',
     // eslint-disable-next-line @typescript-eslint/naming-convention
     CREAR_PEDIDO = '/crear-pedido',

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ResponsePedido } from 'src/app/interfaces/pedido/response-pedido';
+import { ResponsePedidoGet } from 'src/app/interfaces/pedido/response-pedido-get';
 import { environment } from 'src/environments/environment';
 import { MensajesService } from '../mensajes/mensajes.service';
 
@@ -25,6 +26,14 @@ export class PedidoService {
 
   public crearPedido$(data: FormData): Observable<ResponsePedido>{
     return this.http.post<ResponsePedido>(`${this.server}pedidos`, data, this.httpOptions);
+  }
+  public obtenerPedido$(op: string, cedula: string): Observable<ResponsePedidoGet[]>{
+    const resource = `pedidos?OP=${op}&cedula=${cedula}&_sort=created_at:desc`;
+    return this.http.get<ResponsePedidoGet[]>(`${this.server}${resource}` , this.httpOptions);
+  }
+  public obtenerPedidoAll$(cedula: string): Observable<ResponsePedidoGet[]>{
+    const resource = `pedidos?cedula=${cedula}&_sort=created_at:desc`;
+    return this.http.get<ResponsePedidoGet[]>(`${this.server}${resource}` , this.httpOptions);
   }
 
   public dataPedido(data): void{

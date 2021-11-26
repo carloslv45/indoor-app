@@ -9,6 +9,8 @@ import { Observable } from 'rxjs';
 import { Lesson, ResponsePrendasGet } from 'src/app/interfaces/crear-prendas/response-prendas-get';
 import { Lessons } from 'src/app/interfaces/crear-prendas/lessons';
 import { PedidoService } from 'src/app/core/services/pedido/pedido.service';
+import { UserAuthService } from 'src/app/core/services/me/user-auth.service';
+import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 @Component({
   selector: 'app-crear-pedido',
   templateUrl: './crear-pedido.page.html',
@@ -21,13 +23,16 @@ export class CrearPedidoPage implements OnInit {
   public referencia: Lesson[];
   public op = '';
   public imagen: string[] = [];
+  public existeUser: boolean;
   public prendas$: Observable<ResponsePrendasGet[]>;
 
   constructor(
     private navCtrl: NavController,
     private fb: FormBuilder,
     private prendasService: PrendasService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private userAuth: UserAuthService,
+    private mensajes: MensajesService
   ) { }
 
   ngOnInit() {
@@ -75,7 +80,15 @@ export class CrearPedidoPage implements OnInit {
     const {fechaCreaciones, ...object} = data;
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     object.user = userId;
-    this.pedidoService.dataPedido(object);
+    const jwt = localStorage.getItem('jwt');
+    this.userAuth.meAll(jwt, object.cedula).subscribe((resp) => {
+       if(resp.length > 0){
+        this.pedidoService.dataPedido(object);
+        this.formulario.reset();
+         }else{
+          this.mensajes.presentAlertErr(`El usario con cedula ${object.cedula} no existe`);
+         }
+   });
   }
 
   public obtenerPrendas(): void{
@@ -95,7 +108,11 @@ export class CrearPedidoPage implements OnInit {
 
   public opGenerar(): void{
     const op = localStorage.getItem('jwt').split('.')[1].slice(4 , 10);
-    this.op = op;
+    const random = Math.floor(Math.random() * (100000 - 1)) + 1;
+    const union = `${op}${random.toString()}`;
+    console.log(union);
+    this.op = union;
     this.formulario.get('OP').setValue(this.op);
   }
+
 }

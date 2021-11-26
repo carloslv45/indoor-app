@@ -43,9 +43,16 @@ export class InicioPage implements OnInit {
     this.navCtr.navigateForward(RouterContrains.CREAR_REFERENCIA);
   }
   public cerrarSession(){
-    this.navCtr.navigateForward(RouterContrains.LOGIN_ADMIN);
-    this.localService.removeUserSetLocalStorage();
-    this.localService.removejwtSetLocalStorage();
+    if(this.isAdmin){
+      this.navCtr.navigateForward(RouterContrains.LOGIN_ADMIN);
+      this.localService.removeUserSetLocalStorage();
+      this.localService.removejwtSetLocalStorage();
+
+    }else{
+      this.navCtr.navigateForward(RouterContrains.LOGIN_USER);
+      this.localService.removeUserSetLocalStorage();
+      this.localService.removejwtSetLocalStorage();
+    }
   }
 
   public localServiceData(): void{
@@ -60,6 +67,7 @@ export class InicioPage implements OnInit {
     this.userService.me(jwt, user).subscribe((resp) => {
       if(resp){
         this.usuario = `${resp.username} ${resp.apellido}`;
+        this.isAdmin = resp.admin;
       }
     });
   }

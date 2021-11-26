@@ -23,11 +23,11 @@
                 Apellido es requerido
             </div>
             <ion-item>
-                <ion-label position="stacked">Codigo Indoor</ion-label>
-                <ion-input type="text" formControlName="codigo"></ion-input>
+                <ion-label position="stacked">Cedula</ion-label>
+                <ion-input type="number" formControlName="cedula"></ion-input>
             </ion-item>
             <div *ngIf="validarCodigo" class="alert alert-danger" role="alert">
-                Codigo es requerido
+                Cedula es requerida
             </div>
             <ion-item>
                 <ion-label position="stacked">Correo</ion-label>
@@ -41,7 +41,10 @@
                 <ion-input type="password" formControlName="password"></ion-input>
             </ion-item>
             <div *ngIf="validarPassword" class="alert alert-danger" role="alert">
-                Password es requerida y debe tener mas de 6 caracteres
+                Password es requerida
+            </div>
+            <div *ngIf="validarPasswordLength" class="alert alert-danger" role="alert">
+                Password debe tener mas de 6 caracteres
             </div>
             <br>
             <ion-button [disabled]="formulario.invalid" type="submit" color="primary" expand="block" fill="clear" shape="round">

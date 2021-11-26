@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { IngresoService } from '../core/services/auth/ingreso.service';
 import { CreateUserService } from '../core/services/create-user.service';
+import { LocalStorageServiceService } from '../core/services/localService/local-storage-service.service';
+import { MensajesService } from '../core/services/mensajes/mensajes.service';
+import { RouterContrains } from '../enum/router-contrains';
+import { DataIngreso } from '../interfaces/ingreso/data-ingreso';
 
 @Component({
   selector: 'app-login-usuario',
@@ -13,6 +18,9 @@ export class LoginUsuarioPage implements OnInit {
   constructor(private navCtrl: NavController,
               private fb: FormBuilder,
               public alertController: AlertController,
+              private ingresoService: IngresoService,
+              private mensajes: MensajesService,
+              private localService: LocalStorageServiceService,
               private loginUserSer: CreateUserService) { }
 
   ngOnInit() {
@@ -29,14 +37,23 @@ export class LoginUsuarioPage implements OnInit {
 
   //ingresar con login normal
     public loginUser(form): void {
-      console.log(form);
-      const email = form.email;
-      console.log(email.split('.')[0]);
-      if(email.split('.')[0] !== 'admin'){
-        this.loginUsers(form.email, form.password);
-      }else {
-        this.presentAlertErr('Esto es un correo de administrador no puede iniciar sesion');
-      }
+      const {email, password} = form;
+      const data: DataIngreso = {
+        identifier: email,
+        password
+      };
+      this.ingresoService.ingreso(data).subscribe((resp) => {
+        if(resp){
+          console.log(resp);
+          this.localService.setjwtSetLocalStorage(resp.jwt);
+          this.localService.setUserSetLocalStorage(JSON.stringify(resp.user.id));
+          this.navCtrl.navigateForward(RouterContrains.INICIO);
+          this.mensajes.presentAlertErr(`Bienvenido ${resp.user.username} ${resp.user.apellido}`);
+        }
+      }, (err) => {
+        this.mensajes.presentAlertErr('Error de datos de servidor');
+      });
+
   }
 
   //ingreso de session de google

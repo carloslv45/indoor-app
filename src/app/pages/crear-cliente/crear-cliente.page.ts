@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -39,6 +40,10 @@ export class CrearClientePage implements OnInit {
     });
   }
 
+  get validPasswordMin(): boolean{
+    return this.formulario.controls['password'].hasError('minlength');
+  }
+
   public volver(): void{
     this.navCtrl.navigateForward(RouterContrains.INICIO);
   }
@@ -54,6 +59,7 @@ export class CrearClientePage implements OnInit {
       password: data.password,
       admin: false
     };
+
     this.registroService.registro(dataUser).subscribe((resp) => {
       if(resp.user){
         this.mensajeService.presentAlertOk(`Se ha creado el usuario ${resp.user.username}`);
@@ -62,7 +68,12 @@ export class CrearClientePage implements OnInit {
         this.mensajeService.presentAlertOk(`Error al crear el usuario ${resp.user.username}`);
       }
     }, (err) => {
-      this.mensajeService.presentAlertOk(`Error de servidor ${err}`);
+      console.log(err);
+      if(err.error.message[0].messages[0].message === 'Email is already taken.'){
+        this.mensajeService.presentAlertErr(`El correo ya esta registrado`);
+      }else if(err.error.message[0].messages[0].message === 'Email already taken'){
+        this.mensajeService.presentAlertErr(`La cedula ya esta registrada`);
+      }
     });
   }
 }

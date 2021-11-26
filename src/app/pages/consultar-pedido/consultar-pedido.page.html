@@ -9,13 +9,58 @@
      <ion-title class="ion-text-center" >Consultar Pedido</ion-title>
      <ion-item>
        <ion-label>OP</ion-label>
-       <ion-input type="text" placeholder="Consultar OP"></ion-input>
+       <ion-input type="text" #opsearch placeholder="Consultar OP"></ion-input>
      </ion-item>
      <br>
-       <ion-button expand="full" (click)="onClick()">
+       <ion-button expand="full" (click)="onClick(opsearch.value)">
          Buscar Pedido
        </ion-button>
+       <ion-button expand="full" color="success" (click)="allPedidos()">
+         Buscar Todos mis Pedido
+       </ion-button>
        <br>
+        <ion-list *ngIf="(pedido$ | async) as user; else nopedido">
+          <ion-item class="item-card" *ngFor="let pedido of pedido$ | async">
+            <ion-row>
+              <ion-col size="12"  text-center>
+                <ion-card>
+                  <ion-card-header>
+                    <ion-card-title>Prenda: {{pedido.prenda.nombre_prenda}}</ion-card-title>
+                    <ion-card-subtitle>Referencia: {{pedido.referencia}}</ion-card-subtitle>
+                  </ion-card-header>
+                  
+                  <ion-card-content>
+                    <ion-card-subtitle>Numero: </ion-card-subtitle>
+                    <ion-card-subtitle>Talla: </ion-card-subtitle>
+                    <ion-card-subtitle>Nombre: </ion-card-subtitle>
+                  </ion-card-content>
+                  <ion-card-content>
+                    <ion-card-content>
+                      <ion-img src="{{server}}{{pedido.imagen.url}}"></ion-img>
+                    </ion-card-content>
+                    Keep close to Nature's heart... and break clear away, once in awhile,
+                    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+                  </ion-card-content>
+                  <ion-card-content>
+                    <span>Estado: </span>  <ion-badge color="success">Diseño</ion-badge>
+                  </ion-card-content>
+                 <ion-card-content>
+                  <span>Fecha de creación:</span>  <ion-badge color="primary">{{pedido.created_at | date:"medium"}}</ion-badge>
+                 </ion-card-content>
+                </ion-card>
+              </ion-col>
+            </ion-row>
+          </ion-item>
+          <div *ngIf="user.length === 0">
+            <h3 class="text-center">No hay datos con ese OP</h3>
+          </div>
+        </ion-list>
+       <br>
+        <ng-template #nopedido>
+          <h3 class="text-center">No hay Pedidos</h3>
+        </ng-template>
+        
+
        <ion-button expand="full" fill="outline" (click)="volver()">
          Volver
        </ion-button>
