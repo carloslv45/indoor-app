@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <img class="logo-indor" src="../../assets/img/logo-indor.jpeg" alt="Logo Indoor">
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <p class="select">Seleccione operador:</p>
+  <ion-row>
+    <ion-col size="6" *ngFor="let operador of operadores$ | async">
+      <ion-card>
+        <ion-card-content  >
+            <ion-icon slot="start" [name]="operador.icono"></ion-icon>
+            <p class="p-usuario">{{operador.nombre}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

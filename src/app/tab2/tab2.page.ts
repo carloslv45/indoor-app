@@ -21,4 +21,7 @@ export class Tab2Page {
   public ingresoAdmin(): void{
     this.navCtrl.navigateForward('/login-admin');
   }
+  public ingresoOperador(): void{
+    this.navCtrl.navigateForward('/operadores');
+  }
 }

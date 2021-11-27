@@ -2,10 +2,17 @@ export interface ResponsePedidoGet {
     id:           number;
     user:         User;
     cedula:       string;
+    talla:       string;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    detalles_pedido:       string;
+    numero:       number;
     prenda:       Prenda;
     referencia:   string;
     // eslint-disable-next-line @typescript-eslint/naming-convention
+    nombre_prenda:   string;
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     OP:           string;
+    observaciones:           string;
     // eslint-disable-next-line @typescript-eslint/naming-convention
     published_at: Date;
     // eslint-disable-next-line @typescript-eslint/naming-convention

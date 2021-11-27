@@ -45,7 +45,23 @@ const routes: Routes = [
   {
     path: 'crear-referencia',
     loadChildren: () => import('./pages/consultar-referencia/consultar-referencia.module').then( m => m.ConsultarReferenciaPageModule)
+  },  {
+    path: 'modificar-pedido',
+    loadChildren: () => import('./pages/modificar-pedido/modificar-pedido.module').then( m => m.ModificarPedidoPageModule)
+  },
+  {
+    path: 'modificar-pedido-admin',
+    loadChildren: () => import('./pages/modificar-pedido-admin/modificar-pedido-admin.module').then( m => m.ModificarPedidoAdminPageModule)
+  },
+  {
+    path: 'consultar-pedido-admin',
+    loadChildren: () => import('./pages/consultar-pedido-admin/consultar-pedido-admin.module').then( m => m.ConsultarPedidoAdminPageModule)
+  },
+  {
+    path: 'operadores',
+    loadChildren: () => import('./pages/operadores/operadores.module').then( m => m.OperadoresPageModule)
   }
+
 
 
 ];

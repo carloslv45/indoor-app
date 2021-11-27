@@ -15,9 +15,6 @@
        <ion-button expand="full" (click)="onClick(opsearch.value)">
          Buscar Pedido
        </ion-button>
-       <ion-button expand="full" color="success" (click)="allPedidos()">
-         Buscar Todos mis Pedido
-       </ion-button>
        <br>
         <ion-list *ngIf="(pedido$ | async) as user; else nopedido">
           <ion-item class="item-card" *ngFor="let pedido of pedido$ | async">

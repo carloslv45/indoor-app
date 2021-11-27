@@ -6,11 +6,15 @@
 <ion-content [fullscreen]="true">
     <p>Ingresar como:</p>
     <ion-card>
-        <ion-card-content (click)="ingresoUsuario()">
+        <ion-card-content class="card-usuario" (click)="ingresoUsuario()">
             <ion-icon slot="start" name="people-outline"></ion-icon>
             <p class="p-usuario">Usuario</p>
         </ion-card-content>
-        <ion-card-content (click)="ingresoAdmin()">
+        <ion-card-content class="card-operador" (click)="ingresoOperador()">
+            <ion-icon slot="start" name="settings-outline"></ion-icon>
+            <p class="p-usuario">Operador</p>
+        </ion-card-content>
+        <ion-card-content class="card-admin" (click)="ingresoAdmin()">
             <ion-icon slot="start" name="server-outline"></ion-icon>
             <p class="p-usuario">Admin</p>
         </ion-card-content>

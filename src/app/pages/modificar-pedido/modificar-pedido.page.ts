@@ -1,27 +1,32 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import { ModalController, NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { LocalStorageServiceService } from 'src/app/core/services/localService/local-storage-service.service';
 import { UserAuthService } from 'src/app/core/services/me/user-auth.service';
 import { PedidoService } from 'src/app/core/services/pedido/pedido.service';
 import { RouterContrains } from 'src/app/enum/router-contrains';
 import { ResponsePedidoGet } from 'src/app/interfaces/pedido/response-pedido-get';
+import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-consultar-pedido',
-  templateUrl: './consultar-pedido.page.html',
-  styleUrls: ['./consultar-pedido.page.scss'],
+  selector: 'app-modificar-pedido',
+  templateUrl: './modificar-pedido.page.html',
+  styleUrls: ['./modificar-pedido.page.scss'],
 })
-export class ConsultarPedidoPage implements OnInit {
+export class ModificarPedidoPage implements OnInit {
+
   public cedula: string;
   public server = environment.pathImg;
+  public op: string;
   public pedido$: Observable<ResponsePedidoGet[]>;
+  public isModificar = false;
   constructor(
     private navCtrl: NavController,
     private userService: UserAuthService,
     private localService: LocalStorageServiceService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    public modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -29,11 +34,11 @@ export class ConsultarPedidoPage implements OnInit {
   }
 
   public onClick(op: any): void{
-    console.log(op);
+    this.op = op;
    this.pedido$ = this.pedidoService.obtenerPedido$(op, this.cedula);
-   this.pedidoService.obtenerPedido$(op, this.cedula).subscribe((data) => {
-     console.log(data);
-   });
+   if(this.pedido$){
+     this.isModificar = true;
+   }
   }
   public volver(): void{
     this.navCtrl.navigateForward(RouterContrains.INICIO);
@@ -55,8 +60,16 @@ export class ConsultarPedidoPage implements OnInit {
     });
   }
 
-  public allPedidos(): void{
-    this.pedido$ =  this.pedidoService.obtenerPedidoAll$(this.cedula);
+  public async modificarPedido(){
+    const modal = await this.modalController.create({
+      component: ModalComponent,
+      cssClass: 'moda-class',
+      componentProps: {
+        op: this.op,
+        pedido: this.pedido$
+      }
+    });
+    return await modal.present();
   }
-
 }
+

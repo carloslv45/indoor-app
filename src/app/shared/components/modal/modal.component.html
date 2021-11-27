@@ -1,0 +1,40 @@
+
+  <ion-content >
+    <form [formGroup]="formulario" (ngSubmit)="modificar(formulario.value)">
+      <ion-list class="content-modal">
+        <ion-item  class="item-modificar" color="primary">
+          <ion-label>Modificar OP: {{opModal}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Detalles pedido</ion-label>
+          <ion-input type="text" placeholder="Detalles" formControlName="detalles_pedido"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label>Numero de la prenda</ion-label>
+          <ion-input type="number" placeholder="Ej: #11" formControlName="numero"></ion-input>
+        </ion-item>
+          <ion-item>
+            <ion-label>Talla</ion-label>
+            <ion-select  multiple="false" formControlName="talla" placeholder="Seleccione">
+              <ion-select-option *ngFor="let talla of tallas$ | async" [value]="talla.talla">{{talla.talla}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nombre en la prenda</ion-label>
+            <ion-input type="text" placeholder="Ej: Messi" formControlName="nombre_prenda"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Observaciones</ion-label>
+           <ion-textarea formControlName="observaciones"></ion-textarea>
+          </ion-item>
+          <ion-item class="botones-modal">
+           <ion-button type="submit"  expand="block" color="primary" fill="clear" shape="round">
+            Modificar
+           </ion-button>
+           <ion-button type="button" (click)="cerrar()" expand="block" color="danger" fill="outline" shape="round">
+             Cerrar
+           </ion-button>
+          </ion-item>
+      </ion-list>
+    </form>
+  </ion-content>

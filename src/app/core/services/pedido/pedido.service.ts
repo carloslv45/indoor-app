@@ -31,9 +31,17 @@ export class PedidoService {
     const resource = `pedidos?OP=${op}&cedula=${cedula}&_sort=created_at:desc`;
     return this.http.get<ResponsePedidoGet[]>(`${this.server}${resource}` , this.httpOptions);
   }
+  public obtenerPedidoAdmin$(op: string): Observable<ResponsePedidoGet[]>{
+    const resource = `pedidos?OP=${op}&_sort=created_at:desc`;
+    return this.http.get<ResponsePedidoGet[]>(`${this.server}${resource}` , this.httpOptions);
+  }
   public obtenerPedidoAll$(cedula: string): Observable<ResponsePedidoGet[]>{
     const resource = `pedidos?cedula=${cedula}&_sort=created_at:desc`;
     return this.http.get<ResponsePedidoGet[]>(`${this.server}${resource}` , this.httpOptions);
+  }
+
+  public actualizarPedido(id: number, data): Observable<ResponsePedidoGet>{
+    return this.http.put<ResponsePedidoGet>(`${this.server}pedidos/${id}`, data, this.httpOptions);
   }
 
   public dataPedido(data): void{

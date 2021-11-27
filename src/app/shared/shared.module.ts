@@ -7,16 +7,20 @@ import { VerPedidoComponent } from './components/ver-pedido/ver-pedido.component
 import { CrearReferenciaComponent } from './components/crear-referencia/crear-referencia.component';
 import { CrearPrendaComponent } from './components/crear-prenda/crear-prenda.component';
 import { CrearClienteComponent } from './components/crear-cliente/crear-cliente.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   // eslint-disable-next-line max-len
-  declarations: [CrearPedidoComponent, ModificarPedidoComponent, VerPedidoComponent, CrearReferenciaComponent, CrearPrendaComponent, CrearClienteComponent],
+  declarations: [CrearPedidoComponent, ModificarPedidoComponent, VerPedidoComponent, CrearReferenciaComponent, CrearPrendaComponent, CrearClienteComponent , ModalComponent],
   imports: [
     CommonModule,
-    IonicModule
+    IonicModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   // eslint-disable-next-line max-len
-  exports: [CrearPedidoComponent, ModificarPedidoComponent, VerPedidoComponent, CrearReferenciaComponent, CrearPrendaComponent, CrearClienteComponent]
+  exports: [CrearPedidoComponent ,ModalComponent, ModificarPedidoComponent, VerPedidoComponent, CrearReferenciaComponent, CrearPrendaComponent, CrearClienteComponent]
 })
 export class SharedModule { }

@@ -42,6 +42,12 @@ export class InicioPage implements OnInit {
   public navigation5(){
     this.navCtr.navigateForward(RouterContrains.CREAR_REFERENCIA);
   }
+  public navigation6(){
+    this.navCtr.navigateForward(RouterContrains.MODIFICAR_PEDIDO);
+  }
+  public navigation7(){
+    this.navCtr.navigateForward(RouterContrains.CONSULTAR_PEDIDO_ADMIN);
+  }
   public cerrarSession(){
     if(this.isAdmin){
       this.navCtr.navigateForward(RouterContrains.LOGIN_ADMIN);
@@ -68,6 +74,7 @@ export class InicioPage implements OnInit {
       if(resp){
         this.usuario = `${resp.username} ${resp.apellido}`;
         this.isAdmin = resp.admin;
+        console.log(this.isAdmin);
       }
     });
   }

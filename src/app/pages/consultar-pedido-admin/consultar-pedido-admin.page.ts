@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { LocalStorageServiceService } from 'src/app/core/services/localService/local-storage-service.service';
@@ -9,11 +9,12 @@ import { ResponsePedidoGet } from 'src/app/interfaces/pedido/response-pedido-get
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-consultar-pedido',
-  templateUrl: './consultar-pedido.page.html',
-  styleUrls: ['./consultar-pedido.page.scss'],
+  selector: 'app-consultar-pedido-admin',
+  templateUrl: './consultar-pedido-admin.page.html',
+  styleUrls: ['./consultar-pedido-admin.page.scss'],
 })
-export class ConsultarPedidoPage implements OnInit {
+export class ConsultarPedidoAdminPage implements OnInit {
+
   public cedula: string;
   public server = environment.pathImg;
   public pedido$: Observable<ResponsePedidoGet[]>;
@@ -30,8 +31,8 @@ export class ConsultarPedidoPage implements OnInit {
 
   public onClick(op: any): void{
     console.log(op);
-   this.pedido$ = this.pedidoService.obtenerPedido$(op, this.cedula);
-   this.pedidoService.obtenerPedido$(op, this.cedula).subscribe((data) => {
+   this.pedido$ = this.pedidoService.obtenerPedidoAdmin$(op);
+   this.pedidoService.obtenerPedidoAdmin$(op).subscribe((data) => {
      console.log(data);
    });
   }
@@ -58,5 +59,4 @@ export class ConsultarPedidoPage implements OnInit {
   public allPedidos(): void{
     this.pedido$ =  this.pedidoService.obtenerPedidoAll$(this.cedula);
   }
-
 }
