@@ -18,7 +18,9 @@ export enum RouterContrains {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     CONSULTAR_PEDIDO_ADMIN = '/consultar-pedido-admin',
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    MODIFICAR_PEDIDO = '/modificar-pedido-admin',
+    MODIFICAR_PEDIDO = '/modificar-pedido',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    MODIFICAR_PEDIDO_ADMIN = '/modificar-pedido-admin',
     // eslint-disable-next-line @typescript-eslint/naming-convention
     OPERADORES = 'operadores/',
     // eslint-disable-next-line @typescript-eslint/naming-convention
