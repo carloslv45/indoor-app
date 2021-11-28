@@ -6,14 +6,18 @@
 
 <ion-content [fullscreen]="true">
   <p class="select">Seleccione operador:</p>
-  <ion-row>
+  <ion-row *ngIf="operadores$ | async ; else operador ">
     <ion-col size="6" *ngFor="let operador of operadores$ | async">
-      <ion-card>
+      <ion-card (click)="irRuta(operador.url)">
         <ion-card-content  >
-            <ion-icon slot="start" [name]="operador.icono"></ion-icon>
-            <p class="p-usuario">{{operador.nombre}}</p>
+            <ion-icon slot="start" [name]="operador.icono" color="primary"></ion-icon>
+            <p class="p-usuario" >{{operador.nombre}}</p>
         </ion-card-content>
       </ion-card>
     </ion-col>
   </ion-row>
+<ng-template #operador>
+  <h3>No hay data</h3>
+</ng-template>
+<p class="volver" (click)="volver()">Volver</p>
 </ion-content>
