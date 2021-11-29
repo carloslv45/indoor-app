@@ -39,7 +39,28 @@ export class ProcesoPedidoPage implements OnInit {
   public cedula: string;
   public server = environment.pathImg;
   public isGraficas = false;
+  public data: ResponsePedidoGet;
   public pedido$: Observable<ResponsePedidoGet[]>;
+  public chartColors: any[] = [
+    {
+      backgroundColor:['#FF7360'] 
+    }];
+  public chartColors2: any[] = [
+    {
+      backgroundColor:['#6FC8CE'] 
+    }];
+  public chartColors3: any[] = [
+    {
+      backgroundColor:['#FAFFF2'] 
+    }];
+  public chartColors4: any[] = [
+    {
+      backgroundColor:[ '#FFFCC4', '#B9E8E0'] 
+    }];
+  public chartColors5: any[] = [
+    {
+      backgroundColor:[ '#B9E8E0']
+    }];
   constructor(
     private navCtrl: NavController,
     private userService: UserAuthService,
@@ -55,6 +76,7 @@ export class ProcesoPedidoPage implements OnInit {
     console.log(op);
    this.pedido$ = this.pedidoService.obtenerPedido$(op, this.cedula);
    this.pedidoService.obtenerPedido$(op, this.cedula).subscribe((data) => {
+     this.data = data[0];
      console.log(data);
     this.graficasProceso(data[0]);
     this.isGraficas = true;
@@ -95,7 +117,7 @@ export class ProcesoPedidoPage implements OnInit {
         this.doughnutChartData = [data.proceso1,0];
       }
     }else{
-      console.log('data.proceso1 vacio'); 
+      console.log('data.proceso1 vacio');
       this.proceso1 = false;
     }
     if(data.proceso2){

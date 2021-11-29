@@ -132,47 +132,38 @@ export class SeguimientoPage implements OnInit {
     if(this.operador === 'programacion' && this.fechaIncioProgramacion !== null && this.fechaIncioProgramacion !== ''){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'trazo' && this.fechaInicioTrazo !== null && this.fechaInicioTrazo !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'edicion' && this.fechaInicioEdicion !== null && this.fechaInicioEdicion !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'impresion' && this.fechaInicioImpresion !== null && this.fechaInicioImpresion !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'estampacion' && this.fechaInicioEstanpacion !== null && this.fechaInicioEstanpacion !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'confeccion' && this.fechaInicioConfeccion !== null && this.fechaInicioConfeccion !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'empaque' && this.fechaInicioEmpaque !== null && this.fechaInicioEmpaque !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'envio' && this.fechaInicioEnvio !== null && this.fechaInicioEnvio !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'alistamiento' && this.fechaInicioAlistamiento !== null && this.fechaInicioAlistamiento !== '' ){
       this.fechainiciobool = true;
     }else {
-      this.fechafinbool = false;
     }
   }
 
@@ -180,47 +171,38 @@ export class SeguimientoPage implements OnInit {
     if(this.operador === 'programacion' && this.fechaFinProgramacion !== null && this.fechaFinProgramacion !== ''){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'trazo' && this.fechaFinTrazo !== null && this.fechaFinTrazo !== ''){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'edicion' && this.fechaFinEdicion !== null && this.fechaFinEdicion !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'impresion' && this.fechaFinImpresion !== null && this.fechaFinImpresion !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'estampacion' && this.fechaFinEstanpacion !== null && this.fechaFinEstanpacion !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'confeccion' && this.fechaFinConfeccion !== null && this.fechaFinConfeccion !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'empaque' && this.fechaFinEmpaque !== null && this.fechaFinEmpaque !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'envio' && this.fechaFinEnvio !== null && this.fechaFinEnvio !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
     if(this.operador === 'alistamiento' && this.fechaFinAlistamiento !== null && this.fechaFinAlistamiento !== '' ){
       this.fechafinbool = true;
     }else {
-      this.fechafinbool = false;
     }
   }
 

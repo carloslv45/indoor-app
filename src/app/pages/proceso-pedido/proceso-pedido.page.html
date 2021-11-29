@@ -18,141 +18,191 @@
 
        <ion-list *ngIf="isGraficas">
          <ion-row>
-           <ion-col size="6" *ngIf="proceso1">
+           <ion-col size="12" *ngIf="proceso1">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData"
                     [labels]="doughnutChartLabels"
+                    [colors]="chartColors"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
               </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
+              </div>
             </div>
            </ion-col>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData1"
+                    [colors]="chartColors2"
                     [labels]="doughnutChartLabels1"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
               </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
+              </div>
             </div>
            </ion-col>
          </ion-row>
          <ion-row>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData2"
+                    [colors]="chartColors3"
                     [labels]="doughnutChartLabels2"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
               </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
+              </div>
             </div>
            </ion-col>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData3"
                     [labels]="doughnutChartLabels3"
+                    [colors]="chartColors4"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
+              </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
               </div>
             </div>
            </ion-col>
          </ion-row>
          <ion-row>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData4"
+                    [colors]="chartColors5"
                     [labels]="doughnutChartLabels4"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
               </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
+              </div>
             </div>
            </ion-col>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData5"
                     [labels]="doughnutChartLabels5"
+                    [colors]="chartColors5"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
+              </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
               </div>
             </div>
            </ion-col>
          </ion-row>
          <ion-row>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData6"
                     [labels]="doughnutChartLabels6"
+                    [colors]="chartColors4"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
               </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
+              </div>
             </div>
            </ion-col>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData7"
                     [labels]="doughnutChartLabels7"
+                    [colors]="chartColors3"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
+              </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
               </div>
             </div>
            </ion-col>
          </ion-row>
          <ion-row>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData8"
                     [labels]="doughnutChartLabels8"
+                    [colors]="chartColors2"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
               </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
+              </div>
             </div>
            </ion-col>
-           <ion-col size="6">
+           <ion-col size="12">
             <div>
               <div>
                 <div style="display: block">
                   <canvas baseChart
                     [data]="doughnutChartData9"
                     [labels]="doughnutChartLabels9"
+                    [colors]="chartColors"
                     [chartType]="'polarArea'">
                   </canvas>
                 </div>
+              </div>
+              <div class="fechas">
+                <p>Inicio: {{data.fecha_inicio_programacion}}</p>
+                <p>Fin: {{data.fecha_fin_programacion}}</p>
               </div>
             </div>
            </ion-col>
