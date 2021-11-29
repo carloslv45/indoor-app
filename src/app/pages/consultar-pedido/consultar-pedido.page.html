@@ -27,6 +27,7 @@
                   <ion-card-header>
                     <ion-card-title>Prenda: {{pedido.prenda.nombre_prenda}}</ion-card-title>
                     <ion-card-subtitle>Referencia: {{pedido.referencia}}</ion-card-subtitle>
+                    <ion-card-subtitle>OP: {{pedido.OP}}</ion-card-subtitle>
                   </ion-card-header>
                   
                   <ion-card-content>
@@ -43,7 +44,7 @@
                     </ion-card-content>
                   </ion-card-content>
                   <ion-card-content>
-                    <span>Estado: </span>  <ion-badge color="success">Diseño</ion-badge>
+                    <span>Estado: </span>  <ion-badge color="success">{{pedido.estado !== null ? pedido.estado : 'Sin gestion' }}</ion-badge>
                   </ion-card-content>
                  <ion-card-content>
                   <span>Fecha de creación:</span>  <ion-badge color="primary">{{pedido.created_at | date:"medium"}}</ion-badge>

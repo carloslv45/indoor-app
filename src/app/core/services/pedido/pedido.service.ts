@@ -40,8 +40,8 @@ export class PedidoService {
     return this.http.get<ResponsePedidoGet[]>(`${this.server}${resource}` , this.httpOptions);
   }
 
-  public actualizarPedido(id: number, data): Observable<ResponsePedidoGet>{
-    return this.http.put<ResponsePedidoGet>(`${this.server}pedidos/${id}`, data, this.httpOptions);
+  public actualizarPedido(idPedido: number, fechas: any): Observable<ResponsePedidoGet>{
+    return this.http.put<ResponsePedidoGet>(`${this.server}pedidos/${idPedido}`, fechas, this.httpOptions);
   }
 
   public dataPedido(data): void{

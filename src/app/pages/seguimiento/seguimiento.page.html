@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <img class="logo-indor" src="../../assets/img/logo-indor.jpeg" alt="Logo Indoor">
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br>
+  <h2>Seguimiento Operador {{operador}}</h2>
+  <ion-list>
+    <ion-item>
+      <ion-label>Buscar OP</ion-label>
+      <ion-input type="text" #op placeholder=""></ion-input>
+    </ion-item>
+      <ion-button (click)="buscarOp(op.value)" color="primary" expand="block" fill="clear" shape="round">
+        Buscar
+      </ion-button>
+      <p *ngIf="ops">Gestion del OP {{ops}}</p>
+  </ion-list>
+
+  <ion-list>
+    <ion-row *ngIf="buscando">
+      <ion-col size="6">
+        <ion-item class="f-inicio">
+          <ion-label>F. Inicio {{operador}}</ion-label>
+          <input type="checkbox" name="fecha" [value]="fechainicio" #fni [checked]="fechainiciobool" [disabled]="fechainiciobool" (change)="fechaInicio(fni.value)" id="fecha">
+        </ion-item>
+        <p *ngIf="fechainiciobool">{{fechainicio}}</p>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item>
+          <ion-label>F. Fin {{operador}}</ion-label>
+          <input type="checkbox" name="fecha" [value]="fechfin" #fnf  [checked]="fechafinbool" *ngIf="fechainiciobool" [disabled]="fechafinbool" (change)="fechaFin(fnf.value)" id="fecha">
+        </ion-item>
+        <p *ngIf="fechafinbool">{{fechfin}}</p>
+      </ion-col>
+    </ion-row>
+      <ion-button (click)="volver()" color="primary" expand="block" fill="clear" shape="round">
+      Volver
+      </ion-button>
+  </ion-list>
+</ion-content>

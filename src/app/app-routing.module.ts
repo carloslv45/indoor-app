@@ -45,7 +45,8 @@ const routes: Routes = [
   {
     path: 'crear-referencia',
     loadChildren: () => import('./pages/consultar-referencia/consultar-referencia.module').then( m => m.ConsultarReferenciaPageModule)
-  },  {
+  },
+  {
     path: 'modificar-pedido',
     loadChildren: () => import('./pages/modificar-pedido/modificar-pedido.module').then( m => m.ModificarPedidoPageModule)
   },
@@ -60,7 +61,15 @@ const routes: Routes = [
   {
     path: 'operadores',
     loadChildren: () => import('./pages/operadores/operadores.module').then( m => m.OperadoresPageModule)
+  },
+  {
+    path: 'seguimiento/:id',
+    loadChildren: () => import('./pages/seguimiento/seguimiento.module').then( m => m.SeguimientoPageModule)
+  },  {
+    path: 'proceso-pedido',
+    loadChildren: () => import('./pages/proceso-pedido/proceso-pedido.module').then( m => m.ProcesoPedidoPageModule)
   }
+
 
 
 

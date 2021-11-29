@@ -1,0 +1,168 @@
+<ion-header>
+  <ion-toolbar>
+    <img class="logo-indor" src="../../assets/img/logo-indor.jpeg" alt="Logo Indoor">
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+     <ion-title class="ion-text-center" >Proceso Pedido</ion-title>
+     <ion-item>
+       <ion-label>OP</ion-label>
+       <ion-input type="text" #opsearch placeholder="Consultar OP"></ion-input>
+     </ion-item>
+     <br>
+       <ion-button expand="full" (click)="onClick(opsearch.value)">
+         Buscar Pedido
+       </ion-button>
+
+       <ion-list *ngIf="isGraficas">
+         <ion-row>
+           <ion-col size="6" *ngIf="proceso1">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData1"
+                    [labels]="doughnutChartLabels1"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+         </ion-row>
+         <ion-row>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData2"
+                    [labels]="doughnutChartLabels2"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData3"
+                    [labels]="doughnutChartLabels3"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+         </ion-row>
+         <ion-row>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData4"
+                    [labels]="doughnutChartLabels4"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData5"
+                    [labels]="doughnutChartLabels5"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+         </ion-row>
+         <ion-row>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData6"
+                    [labels]="doughnutChartLabels6"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData7"
+                    [labels]="doughnutChartLabels7"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+         </ion-row>
+         <ion-row>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData8"
+                    [labels]="doughnutChartLabels8"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+           <ion-col size="6">
+            <div>
+              <div>
+                <div style="display: block">
+                  <canvas baseChart
+                    [data]="doughnutChartData9"
+                    [labels]="doughnutChartLabels9"
+                    [chartType]="'polarArea'">
+                  </canvas>
+                </div>
+              </div>
+            </div>
+           </ion-col>
+         </ion-row>
+       </ion-list>
+        
+
+       <ion-button expand="full" fill="outline" (click)="volver()">
+         Volver
+       </ion-button>
+
+  </ion-list>
+</ion-content>

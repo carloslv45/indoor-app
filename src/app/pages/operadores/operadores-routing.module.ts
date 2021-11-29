@@ -19,10 +19,6 @@ const routes: Routes = [
     component: OperadoresPage
   },
   {
-    path: 'diseño',
-    component: DisenadorComponent
-  },
-  {
     path: 'programacion',
     component: ProgramacionComponent
   },
@@ -55,8 +51,12 @@ const routes: Routes = [
     component: EmpaqueComponent
   },
   {
-    path: 'despachos',
+    path: 'envio',
     component: DespachosComponent
+  },
+  {
+    path: 'alistamiento',
+    component: DisenadorComponent
   },
 ];
 

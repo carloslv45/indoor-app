@@ -48,6 +48,9 @@ export class InicioPage implements OnInit {
   public navigation7(){
     this.navCtr.navigateForward(RouterContrains.CONSULTAR_PEDIDO_ADMIN);
   }
+  public navigation8(){
+    this.navCtr.navigateForward(RouterContrains.PROCESO_PEDIDO);
+  }
   public cerrarSession(){
     if(this.isAdmin){
       this.navCtr.navigateForward(RouterContrains.LOGIN_ADMIN);

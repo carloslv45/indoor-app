@@ -24,5 +24,8 @@ export enum RouterContrains {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     OPERADORES = 'operadores/',
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    TABS = '/tabs/tab2'
+    TABS = '/tabs/tab2',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    PROCESO_PEDIDO = '/proceso-pedido',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
 };
