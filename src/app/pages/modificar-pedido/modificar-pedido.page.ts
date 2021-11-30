@@ -18,7 +18,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./modificar-pedido.page.scss'],
 })
 export class ModificarPedidoPage implements OnInit {
-
+  public total: number;
   public cedula: string;
   public server = environment.pathImg;
   public op: string;
@@ -93,8 +93,13 @@ export class ModificarPedidoPage implements OnInit {
     this.referenciaService.getEspecificaciones(id).subscribe((resp) => {
       if(resp){
        this.especificacion = resp;
+       this.total = resp.length;
       }
     });
+  }
+
+  public refrech(): void{
+    location.reload();
   }
 }
 

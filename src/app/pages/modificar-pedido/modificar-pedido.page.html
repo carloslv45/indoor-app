@@ -68,6 +68,9 @@
           <div *ngFor="let data of item.especificacion">{{data.nombre_prenda}}</div>
           <div *ngFor="let data of item.especificacion">{{data.observaciones}}</div>
          </div>
+         <div class="total">
+           <p> Total <ion-badge color="primary">{{total}}</ion-badge></p>
+         </div>
        </ion-list>
       <br>
        <ng-template #nopedido>
@@ -78,6 +81,9 @@
 
       <ion-button *ngIf="isModificar" expand="full"  (click)="modificarPedido()">
         Modificar
+      </ion-button>
+      <ion-button *ngIf="isModificar" expand="full" color="success" (click)="refrech()">
+        Actualizar
       </ion-button>
       <ion-button expand="full" fill="outline" (click)="volver()">
         Volver
