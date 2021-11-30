@@ -32,6 +32,7 @@ export class CrearClientePage implements OnInit {
     this.formulario = this.fb.group({
       cedula: ['', Validators.required],
       nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       celular: ['', [Validators.required, Validators.minLength(10)]],
       direccion: ['', Validators.required],
@@ -54,6 +55,7 @@ export class CrearClientePage implements OnInit {
   public crearUsuario(data: CrearUsuario): void{
     const dataUser: CrearUsuario = {
       username: data.nombre,
+      apellido: data.apellido,
       cedula: data.cedula,
       email: data.email,
       celular: data.celular,
