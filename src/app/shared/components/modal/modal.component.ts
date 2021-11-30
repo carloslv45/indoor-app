@@ -4,7 +4,10 @@ import { ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { MensajesService } from 'src/app/core/services/mensajes/mensajes.service';
 import { PedidoService } from 'src/app/core/services/pedido/pedido.service';
+import { ReferenciaService } from 'src/app/core/services/referencia/referencia.service';
 import { TallasService } from 'src/app/core/services/tallas/tallas.service';
+import { Especificacion } from 'src/app/interfaces/espesificaciones/especificacionArr';
+import { EspesificacionData } from 'src/app/interfaces/espesificaciones/especificaciones-data';
 import { ResponsePedidoGet } from 'src/app/interfaces/pedido/response-pedido-get';
 import { ResponseTallas } from 'src/app/interfaces/tallas/response-tallas';
 
@@ -17,9 +20,12 @@ export class ModalComponent implements OnInit {
   public opModal: string;
   public tallas$: Observable<ResponseTallas[]>;
   public id: number;
+  public especificacion: Especificacion[] = [];
+  public idPedido: number;
   public formulario: FormGroup;
   @Input() set op(val: string){
      this.opModal = val;
+     this.obtenerOp(this.opModal);
   }
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @Input() pedido: Observable<ResponsePedidoGet[]>;
@@ -28,7 +34,8 @@ export class ModalComponent implements OnInit {
     private fb: FormBuilder,
     private pedidoService: PedidoService,
     private mensaje: MensajesService,
-    private tallasService: TallasService
+    private tallasService: TallasService,
+    private referenciaService: ReferenciaService
   ) { }
 
   ngOnInit() {
@@ -57,6 +64,7 @@ export class ModalComponent implements OnInit {
       if(resp){
         this.mensaje.presentAlertOk('Información cargada correctamente');
         this.modalCtrl.dismiss();
+        this.postReferencia();
       }
     });
   }
@@ -66,6 +74,28 @@ export class ModalComponent implements OnInit {
 
   public obtenerTallas(): void{
    this.tallas$ =  this.tallasService.obtenerTallas();
+  }
+
+
+
+  public obtenerOp(op: string): void{
+    this.pedidoService.obtenerPedidoAdmin$(op).subscribe((data) => {
+      data.map((resp) => {
+       this.idPedido = resp.id;
+      });
+    });
+  }
+
+  public postReferencia(): void{
+    this.especificacion.push(this.formulario.value);
+    const data: EspesificacionData = {
+      pedido: this.idPedido,
+      especificacion:  this.especificacion
+    };
+    console.log(data);
+    this.referenciaService.postEspecificaciones(data).subscribe((ok) => {
+      console.log(ok);
+    });
   }
 
 }

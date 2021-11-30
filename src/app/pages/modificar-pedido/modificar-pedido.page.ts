@@ -4,7 +4,10 @@ import { Observable } from 'rxjs';
 import { LocalStorageServiceService } from 'src/app/core/services/localService/local-storage-service.service';
 import { UserAuthService } from 'src/app/core/services/me/user-auth.service';
 import { PedidoService } from 'src/app/core/services/pedido/pedido.service';
+import { ReferenciaService } from 'src/app/core/services/referencia/referencia.service';
 import { RouterContrains } from 'src/app/enum/router-contrains';
+import { EspesificacionData } from 'src/app/interfaces/espesificaciones/especificaciones-data';
+import { ResponseEspecifiacion } from 'src/app/interfaces/espesificaciones/response-especificaicon';
 import { ResponsePedidoGet } from 'src/app/interfaces/pedido/response-pedido-get';
 import { ModalComponent } from 'src/app/shared/components/modal/modal.component';
 import { environment } from 'src/environments/environment';
@@ -19,14 +22,17 @@ export class ModificarPedidoPage implements OnInit {
   public cedula: string;
   public server = environment.pathImg;
   public op: string;
+  public idPedido: number;
   public pedido$: Observable<ResponsePedidoGet[]>;
   public isModificar = false;
+  public especificacion: ResponseEspecifiacion[];
   constructor(
     private navCtrl: NavController,
     private userService: UserAuthService,
     private localService: LocalStorageServiceService,
     private pedidoService: PedidoService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private referenciaService: ReferenciaService
   ) { }
 
   ngOnInit() {
@@ -35,6 +41,7 @@ export class ModificarPedidoPage implements OnInit {
 
   public onClick(op: any): void{
     this.op = op;
+    this.obtenerOp(op);
    this.pedido$ = this.pedidoService.obtenerPedido$(op, this.cedula);
    if(this.pedido$){
      this.isModificar = true;
@@ -70,6 +77,24 @@ export class ModificarPedidoPage implements OnInit {
       }
     });
     return await modal.present();
+  }
+
+  public obtenerOp(op: string): void{
+    this.pedidoService.obtenerPedidoAdmin$(op).subscribe((data) => {
+      data.map((resp) => {
+       this.idPedido = resp.id;
+       this.getReferencia(this.idPedido);
+      });
+    });
+  }
+
+
+  public getReferencia(id: number): void{
+    this.referenciaService.getEspecificaciones(id).subscribe((resp) => {
+      if(resp){
+       this.especificacion = resp;
+      }
+    });
   }
 }
 

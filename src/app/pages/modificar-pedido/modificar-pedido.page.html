@@ -56,6 +56,18 @@
            <h3 class="text-center">No hay datos con ese OP</h3>
            <ion-img class="no-pedidos" src="assets/icon/undraw_no_data_re_kwbl.svg"></ion-img>
          </div>
+         <div class="head">
+           <p>talla</p>
+           <p>numero</p>
+           <p>prenda</p>
+           <p>observaciones</p>
+         </div>
+         <div class="tabla" *ngFor="let item of especificacion">
+          <div *ngFor="let data of item.especificacion">{{data.talla}}</div>
+          <div *ngFor="let data of item.especificacion">{{data.numero}}</div>
+          <div *ngFor="let data of item.especificacion">{{data.nombre_prenda}}</div>
+          <div *ngFor="let data of item.especificacion">{{data.observaciones}}</div>
+         </div>
        </ion-list>
       <br>
        <ng-template #nopedido>

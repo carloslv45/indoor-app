@@ -21,6 +21,9 @@
       <ion-label stacked>Correo</ion-label>
       <ion-input type="email" placeholder="" formControlName="email"></ion-input>
     </ion-item>
+    <div *ngIf="validCorreo" class="alert alert-danger" role="alert">
+      Correo requerido o invalido
+  </div>
     <ion-item>
       <ion-label stacked>Celular</ion-label>
       <ion-input type="number" placeholder="" formControlName="celular"></ion-input>

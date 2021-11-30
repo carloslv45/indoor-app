@@ -30,7 +30,7 @@ export class LoginAdminPage implements OnInit {
 
   public dataBuilder(): void{
     this.formulario = this.fb.group({
-      email: ['admin.', Validators.required],
+      email: ['admin.', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       codigo: ['', Validators.required],
     });

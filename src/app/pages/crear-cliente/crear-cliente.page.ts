@@ -43,6 +43,9 @@ export class CrearClientePage implements OnInit {
   get validPasswordMin(): boolean{
     return this.formulario.controls['password'].hasError('minlength');
   }
+  get validCorreo(): boolean{
+    return this.formulario.get('email').invalid && this.formulario.get('email').touched;
+  }
 
   public volver(): void{
     this.navCtrl.navigateForward(RouterContrains.INICIO);

@@ -17,3 +17,16 @@ img{
 
 }
 
+.tabla{
+    display: flex;
+    gap: 2em;
+    justify-content: space-evenly;
+}
+.head{
+    display: flex;
+    gap: 2em;
+    justify-content: space-evenly;
+}
+.head p{
+    font-size: 11px;
+}

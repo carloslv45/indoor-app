@@ -34,10 +34,11 @@ export class SeguimientoPage implements OnInit {
   public buscando = false;
   public idOperador: number;
   public idPedido: number;
-  public fechainicio = DateTime.local().toLocaleString(DateTime.DATETIME_MED);
+  public fechainicio: string;
   public fechainiciobool = false;
-  public fechfin = DateTime.local().toLocaleString(DateTime.DATETIME_MED);
+  public fechfin: string;
   public fechafinbool = false;
+
   constructor(
     private activeRouter: ActivatedRoute,
     private pedidoService: PedidoService,
@@ -101,8 +102,9 @@ export class SeguimientoPage implements OnInit {
 
   public fechaInicio(val): void{
     this.fechainiciobool = !this.fechainiciobool;
+    this.fechainicio  = DateTime.local().toLocaleString(DateTime.DATETIME_MED);
     if(this.fechainiciobool){
-      const data = this.saberOpracionInicio(val);
+      const data = this.saberOpracionInicio(this.fechainicio);
       this.pedidoService.actualizarPedido(this.idPedido, data ).subscribe((resp => {
         if(resp){
           this.mensaje.presentAlertOk(`Se ha iniciado el proceso de ${this.operador} al OP ${this.ops}`);
@@ -110,14 +112,12 @@ export class SeguimientoPage implements OnInit {
         }
       }));
     }
-
-
   }
   public fechaFin(val): void{
     this.fechafinbool = !this.fechafinbool;
+    this.fechfin = DateTime.local().toLocaleString(DateTime.DATETIME_MED);
     if(this.fechafinbool){
-      this.fechfin = val;
-       const data = this.saberOpracionFin(val);
+       const data = this.saberOpracionFin(this.fechfin);
       this.pedidoService.actualizarPedido(this.idPedido, data ).subscribe((resp => {
         if(resp){
           this.mensaje.presentAlertOk(`Se ha Finalizado el proceso de ${this.operador} al OP ${this.ops}`);
@@ -125,6 +125,7 @@ export class SeguimientoPage implements OnInit {
         }
       }));
     }
+
   }
 
 
