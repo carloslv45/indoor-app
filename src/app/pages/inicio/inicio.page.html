@@ -4,30 +4,38 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="isAdmin">
-    <h2>Bienvenido {{usuario}}</h2>
-    <ion-button (click)="navigation()" color="border-black" expand="block" fill="outline">
-        Crear Cliente </ion-button>
-    <ion-button (click)="navigation2()" color="primary" expand="block" fill="outline">
-        Crear Pedido </ion-button>
-    <ion-button (click)="navigation7()" color="primary" expand="block" fill="outline">
-        Consultar Pedido </ion-button>
-    <ion-button (click)="navigation4()" color="primary" expand="block" fill="outline">
-        Crear Prenda </ion-button>
-    <ion-button (click)="navigation5()" color="primary" expand="block" fill="outline">
-        Crear Refencia  </ion-button>
-    <ion-button (click)="cerrarSession()" color="danger" expand="block" fill="outline">
-       Cerrar Session  </ion-button>
+<ion-content >
+    <div class="contenido" *ngIf="isLoading">
+        <h1>Cardando...</h1>
+    </div>
+    <div class="contenido" *ngIf="!isLoading">
+        <ion-list *ngIf="isAdmin">
+            <h2>Bienvenido {{usuario}}</h2>
+            <ion-button (click)="navigation()" color="border-black" expand="block" fill="outline">
+                Crear Cliente </ion-button>
+            <ion-button (click)="navigation2()" color="primary" expand="block" fill="outline">
+                Crear Pedido </ion-button>
+            <ion-button (click)="navigation7()" color="primary" expand="block" fill="outline">
+                Consultar Pedido </ion-button>
+            <ion-button (click)="navigation4()" color="primary" expand="block" fill="outline">
+                Crear Prenda </ion-button>
+            <ion-button (click)="navigation5()" color="primary" expand="block" fill="outline">
+                Crear Refencia  </ion-button>
+            <ion-button (click)="cerrarSession()" color="danger" expand="block" fill="outline">
+               Cerrar Session  </ion-button>
+        </ion-list>
+        <ion-list *ngIf="!isAdmin">
+            <h2>Bienvenido {{usuario}}</h2>
+            <ion-button (click)="navigation3()" color="border-black" expand="block" fill="outline">
+                Consultar Pedido </ion-button>
+            <ion-button (click)="navigation6()" color="primary" expand="block" fill="outline">
+                Modificar Pedido </ion-button>
+            <ion-button (click)="navigation8()" color="primary" expand="block" fill="outline">
+                Proceso del Pedido </ion-button>
+            <ion-button (click)="cerrarSession()" color="danger" expand="block" fill="outline">
+               Cerrar Session  </ion-button>
+        </ion-list>
+    </div>
+
 </ion-content>
 
-<ion-content *ngIf="!isAdmin">
-    <h2>Bienvenido {{usuario}}</h2>
-    <ion-button (click)="navigation3()" color="border-black" expand="block" fill="outline">
-        Consultar Pedido </ion-button>
-    <ion-button (click)="navigation6()" color="primary" expand="block" fill="outline">
-        Modificar Pedido </ion-button>
-    <ion-button (click)="navigation8()" color="primary" expand="block" fill="outline">
-        Proceso del Pedido </ion-button>
-    <ion-button (click)="cerrarSession()" color="danger" expand="block" fill="outline">
-       Cerrar Session  </ion-button>
-</ion-content>

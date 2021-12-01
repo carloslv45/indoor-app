@@ -14,6 +14,7 @@ import { RouterContrains } from 'src/app/enum/router-contrains';
 export class InicioPage implements OnInit {
   public usuario: string;
   public isAdmin: boolean;
+  public isLoading = true;
   constructor(private activeRouter: ActivatedRoute,
               private router: Router,
               private localService: LocalStorageServiceService,
@@ -74,10 +75,16 @@ export class InicioPage implements OnInit {
     // eslint-disable-next-line radix
     const user = parseInt(userId);
     this.userService.me(jwt, user).subscribe((resp) => {
-      if(resp){
-        this.usuario = `${resp.username} ${resp.apellido}`;
+      if(resp.admin){
+        this.isLoading = false;
         this.isAdmin = resp.admin;
-        console.log(this.isAdmin);
+        this.usuario = `${resp.username} ${resp.apellido}`;
+        console.log('IMPORTANTISOMO', this.isAdmin);
+      }else{
+        this.isLoading = false;
+        this.isAdmin = resp.admin;
+        this.usuario = `${resp.username} ${resp.apellido}`;
+        console.log('IMPORTANTISOMO', this.isAdmin);
       }
     });
   }
